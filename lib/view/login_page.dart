@@ -52,41 +52,50 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: 40,
                 ),
-                InkWell(
-                  onTap: () async {
-                    print("login was pressed! Bitch!");
-                    await Future.delayed(Duration(seconds: 1));
-                    Navigator.pushNamed(context, MyRoutes.homeRoute); //Used this to navigate to next page.
-                    setState(() {
-                      buttonChanged = true;
-                    });
-                  },
-                  child: AnimatedContainer(
-                    height: 50,
-                    width: buttonChanged ? 80 : 150,
-                    alignment: Alignment.center,
-                    child: buttonChanged
-                        ? Icon(
-                            Icons.check,
-                            color: Colors.white,
-                          )
-                        : Text(
-                            "Click here to login",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
-                          ),
-                    decoration: BoxDecoration(
-                      color: Colors.cyan,
-                      // shape: buttonChanged
-                      //     ? BoxShape.circle
-                      //     : BoxShape
-                      //         .rectangle, //colors can be used either inside the decoration or on the main property
-                      borderRadius:
-                          BorderRadius.circular(buttonChanged ? 70 : 8),
+                Material(
+                  color: Colors.cyan,
+                  borderRadius:
+                  BorderRadius.circular(buttonChanged ? 70 : 8),
+
+                  child: InkWell(
+                    splashColor: Colors.white,
+                    onTap: () async {
+                      print("login was pressed! Bitch!");
+                      await Future.delayed(Duration(seconds: 1));
+                      Navigator.pushNamed(
+                          context,
+                          MyRoutes
+                              .homeRoute); //Used this to navigate to next page.
+                      setState(() {
+                        buttonChanged = true;
+                      });
+                    },
+                    child: AnimatedContainer(
+                      height: 50,
+                      width: buttonChanged ? 80 : 150,
+                      alignment: Alignment.center,
+                      child: buttonChanged
+                          ? Icon(
+                              Icons.check,
+                              color: Colors.white,
+                            )
+                          : Text(
+                              "Click here to login",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
+                            ),
+                      // decoration: BoxDecoration(
+                      //   color: Colors.cyan,
+                      //   // shape: buttonChanged
+                      //   //     ? BoxShape.circle
+                      //   //     : BoxShape
+                      //   //         .rectangle, //colors can be used either inside the decoration or on the main property
+                      //
+                      // ),
+                      duration: Duration(seconds: 1),
                     ),
-                    duration: Duration(seconds: 1),
                   ),
                 )
                 // ElevatedButton(

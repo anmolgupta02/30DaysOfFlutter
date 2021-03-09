@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:thirtydaysofflutter/view/custom_colors.dart';
 
 class MyDrawer extends StatelessWidget {
   @override

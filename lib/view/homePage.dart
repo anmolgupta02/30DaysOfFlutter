@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:thirtydaysofflutter/models/catelog.dart';
 import 'package:thirtydaysofflutter/widgets/drawer.dart';
 import 'package:thirtydaysofflutter/widgets/grid_item_widget.dart';
@@ -26,7 +27,7 @@ class _HomePageState extends State<HomePage> {
     var decodedData = jsonDecode(catalogJson);
     var productData = decodedData["products"];
     catelogModel.items = List.from(productData)
-        .map<Item>((item) => Item.fromJson(item))
+        .map<Item>((elementsFromJson) => Item.fromJson(elementsFromJson))
         .toList();
     setState(() {});
   }
@@ -64,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                     crossAxisSpacing: 16),
                 itemCount: catelogModel.items.length,
                 itemBuilder: (context, index) {
-                  final item = catelogModel.items[index];
+                  //final item = catelogModel.items[index];
                   return GridItemWidget(item: catelogModel.items[index]);
                   //   return Card(
                   //       clipBehavior: Clip.antiAlias,
@@ -91,7 +92,23 @@ class _HomePageState extends State<HomePage> {
                 },
               )
             : Center(
-                child: CircularProgressIndicator(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SpinKitChasingDots(
+                      color: Colors.cyan,
+                      size: 100.0,
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      'Loading some data for you!',
+                      style: TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.bold),
+                    )
+                  ],
+                ),
               ),
       ),
       drawer: MyDrawer(),
